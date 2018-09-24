@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %}Web Crawl Config - Search Site{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<p/>
+<p/>
+<p/>
+
+<form method="get" action="{{ action }}" style="align:center;">
+  {% if multiple %}
+  <input type="hidden" name="multiple" id="id_multiple" value="1" />
+  {% endif %}
+  &nbsp;&nbsp;Search Web Sites(Any field): <input type="text" name="q" id="id_q" value="{{ query }}"/>
+  <input type="submit" value="Search" />
+</form>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load jsonify %}
+{% block head_title %}Web Crawl Config - Select Site{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<script type="text/javascript">
+  function selectAll(obj) {
+
+  var checkboxes = document.getElementsByTagName("input");
+
+  var allbox = document.getElementById("check_all");
+
+  if (allbox.checked)
+      allbox.checked = false;
+  else
+      allbox.checked = true;      
+
+  for (var i=0; i<checkboxes.length; i++) {
+      var box = checkboxes[i];
+      if (box.checked)
+          box.checked = false;
+      else
+          box.checked = true;
+
+   }
+
+  }
+</script>
+
+<p/>
+<p/>
+<p/>
+<form action="{{ action }}" method="POST">
+  {% csrf_token %}  
+  <button type="submit" class="siteselect-go">Submit</button>
+  <button type="reset" class="siteselect-go">Reset</button>
+  
+  {% if multiple %}
+  &nbsp;&nbsp;&nbsp;Select All: <input type="checkbox" name="check_all" id="check_all" onClick="javascript:selectAll(this)"></input>
+  {% endif %}
+<ol>
+{% for website in websites %}
+<li>
+  
+  <span class="config">{{ website.name }}</span>
+  {% if multiple %}
+  <input type="checkbox" name="check_{{ website.id }}"
+         id="{{ website.id }}"></input>
+  {% else %}
+  <input type="radio" name="radio_{{ website.id }}"
+         id="{{ website.id }}"></input>
+  {% endif %}
+    <ul style="margin-left:30px;line-height:15pt;">
+      <li>URL: <span class="url">{{ website.website_url }}</span></li>
+      <li>Visible URL: <span class="url">{{ website.visible_url }}</span></li>
+      <li>Last Updated: {{ website.last_updated }}</li>
+      <li>Last Crawled: {{ website.last_crawled }}</li>
+      <li>Spider Type: {{ website.spider_type }}</li>
+      {% if website.spider_class %}
+      <li>Spider Class: {{ website.spider_class }}</li>
+      {% endif %}     
+      {% if website.seed_urls %}      
+      <li>Seed URLs: <span class="data">{{ website.seed_urls }}</span></li>
+      {% endif %}
+      {% if website.tag %}
+      Tag (A key to identify the crawl): <input type="text" name="tag_{{ website.id }}" id="tag_{{ website.id }}" size="10" value="{{ website.tag }}"></input>
+      {% else %}
+      Tag (A key to identify the crawl): <input type="text" name="tag_{{ website.id }}" id="tag_{{ website.id }}" size="10"></input>
+      {% endif %}
+      
+    </ul>
+    <br/>
+  </li>
+{% endfor %}
+{% if websites|length > 5 %}
+</ol>
+<button type="submit" class="siteselect-go">Submit</button>
+{% endif %}
+</form>
+
+</div>
+
+{% endblock %}

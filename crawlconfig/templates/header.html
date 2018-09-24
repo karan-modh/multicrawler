@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+<header>
+  <div class="container">
+    <div id="brand-logo">
+      <img src="{% static 'img/Y-logo-L.png' %}">
+    </div>
+      <ul id="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="#" onClick="javascript:history.go(-1)">Go Back</a></li>
+        <li><a href="/accounts/logout/">Logout</a></li>
+      </ul>
+  </div>
+</header>

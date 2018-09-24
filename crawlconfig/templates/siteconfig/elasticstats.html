@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %}Web Crawl Config - ElasticSearch Stats{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<p>&nbsp;&nbsp;&nbsp;Index Size =>   {{ index_size }} documents</p>
+<!--- <p>&nbsp;&nbsp;&nbsp;Deleted Size => {{ index_del }} documents</p> -->
+
+{% endblock %}

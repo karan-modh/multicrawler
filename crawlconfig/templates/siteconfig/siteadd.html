@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %}Web Crawl Config{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="crawlconfigform">
+  <div id="login" class="website-popup">
+
+    <h1>{{ add_title }}</h1>
+      </li>
+    </ul>
+    <form method="POST" class="site-config-form" action="{{ action }}">
+      {% csrf_token %}
+      {{ site_add_form.as_p }}
+        <input id="website_id" type="hidden" name="website_id" value="{{ website_id }}" />
+        <button type="submit" class="form-go">Save</button>
+
+    </form>
+  </div>
+  </div>
+{% endblock %}

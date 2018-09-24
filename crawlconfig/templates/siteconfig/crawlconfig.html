@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %}Web Crawl Config{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<script type="text/javascript">
+  function selectWebsite(obj) {
+  var elt = document.getElementById(obj.id);
+  if (elt.selectedIndex == -1)
+     return null;
+
+  var name = elt.options[elt.selectedIndex].text;
+  var url = '/editsiteconfig/' + name.split('--')[0];
+  javascript:window.location=url;
+  }
+
+</script>  
+
+  
+<div class="crawlconfigform">
+  <div id="login" class="crawl-popup">
+    {% if site_new %}
+    <h1>Adding New Crawl Configuration for - {{ website }}</h1>
+    {% else %}
+    <h1>Editing Crawl Configuration for - {{ website }}</h1>
+    {% endif %}
+    
+    <form method="POST" class="crawl-config-form" action="/save_crawl_config/">
+      {% csrf_token %}
+      {{ crawl_config_form.as_p }}
+      {{ crawl_schedule_form.as_p }}
+      <button type="submit" class="form-go">Save</button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

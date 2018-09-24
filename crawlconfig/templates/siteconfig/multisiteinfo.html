@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load jsonify %}
+{% block head_title %}Web Crawl Config - Site Information{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<p/>
+<p>
+&nbsp;&nbsp;Found {{ total }} hits.
+</p>
+
+{% for site in hits %}
+{% if site.name %}
+<span class="definition">{{ forloop.counter }}. {{ site.name }}</span>
+{% else %}
+<span class="definition">{{ forloop.counter }}. (No Name)</span>
+{% endif %}
+<br/><br/>
+<div class="siteinfo">Site Information
+  <ol>
+    <li>URL: <span class="url">{{ site.website_url }}</span></li>
+    <li>Visible URL: <span class="url">{{ site.visible_url }}</span></li>
+    <li>Last Updated: <span class="config">{{ site.last_updated }}</span></li>
+    <li>Last Crawled: <span class="config">{{ site.last_crawled }}</span></li>
+  </ol>
+</div>
+
+{% if site.sched_not_found %}
+<div class="siteinfo">Schedule - Not Present</div><p/><p/>
+{% else %}
+<div class="siteinfo">Schedule
+  <ol>
+    <li>Frequency of crawl: <span class="config">Once in {{ site.frequency }} days</span></li>
+    <li>Priority of crawl: <span class="config">{{ site.priority }}</span></li>
+    <li>Automatic Schedule Enabled: <span class="config">{{ site.enabled }}</span></li>
+  </ol>
+</div>
+{% endif %}
+
+{% if site.config_not_found %}
+<div class="siteinfo">Configuration - Not Present</div>
+{% else %}
+<div class="siteinfo">Configuration
+  <ol>
+    <li>Spider Type: <span class="config">{{ site.spider_type }}</span></li>
+    <li>Seed URLs: <ul>
+        {% for url in site.seed_urls %}
+        <li><a href="{{ url }}" class="url">{{ url }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% if site.site_settings %}
+    <li>Site Settings: <span class="data">{{ site.site_settings | jsonify }}</span></li>
+    {% else %}
+    <li>Site Settings: <span class="config">N.A</span></li>
+    {% endif %}
+    {% if site.spider_type == "generic" %}
+    {% if site.url_patterns.0 != None %}
+    <li>URL Patterns: <span class="data">{{ site.url_patterns | jsonify }}</span></li>
+    {% if site.parse_patterns %} 
+    <li>Parse Patterns: <span class="data">{{ site.parse_patterns | jsonify }}</span></li>
+    {% else %}
+    <li>Parse Patterns: <span class="config">N.A</span></li>    
+    {% endif %}
+    {% endif %} 
+    {% if site.spider_class %}
+    <li>Spider Class: <span class="config">{{ site.spider_class }}</span></li>
+    <li>Class Settings: <span class="data">{{ site.class_settings | jsonify }}</span></li>
+    {% endif %} 
+    {% endif %}
+  </ol>
+</div>
+{% endif %}
+<br/><br/>
+{% endfor %}
+
+<p/>
+
+
+{% endblock %}

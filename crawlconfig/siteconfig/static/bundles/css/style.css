@@ -1,0 +1,736 @@
+/*global style*/
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Lato-Light';
+  src: url('../../fonts/Lato-Light.ttf');
+}
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url('../../fonts/Lato-Regular.ttf');
+}
+html{
+  height: 100%;
+  width: 100%;
+}
+body{
+  font-family: Lato-Regular;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  min-height: 100%;
+
+}
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+
+  display: block;
+  background-image: url('../../img/Y-background-L.jpg');
+  background-size:cover;
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: opacity(90%);
+  -moz-filter: opacity(30%);
+  -o-filter: opacity(90%);
+  -ms-filter: opacity(90%);
+  filter: opacity(50%);
+}
+
+.data {
+    color:#ff1122;
+    font-family: Monospace;
+    font-size: 10pt;
+    margin-left: 20px;
+}
+
+.error {
+    color:#ff1122;
+    font-family: Monospace;
+    font-size: 10pt;
+}
+
+.url {
+    color: #1201cd;
+    font-family: Sans;
+    font-size: 10pt;
+    margin-left: 15px;
+}
+
+.config {
+    color: #aa01bb;
+    font-family: Helvetica;
+    font-size: 12pt;
+    margin-left: 15px;
+}   
+    
+.white-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+
+  display: block;
+  background-color: white;
+  background-size:cover;
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: opacity(85%);
+  -moz-filter: opacity(85%);
+  -o-filter: opacity(85%);
+  -ms-filter: opacity(85%);
+  filter: opacity(85%);
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  separator: |;
+}
+
+#menu {   
+    list-style-type:none;  
+    margin-bottom:20px;  
+    padding:0;  
+    height:30px;
+    float: right;
+    font-family:Arial;  
+    font-size:0.9em;  
+}  
+#menu li {  
+    float:rigt;  
+    height:30px;  
+}  
+#menu li a {  
+    display:block;  
+    padding:0 20px;  
+    color:#000;  
+    text-decoration: none;  
+}  
+#menu li a:hover {  
+    text-decoration:none;  
+}             
+/*container css*/
+.container{
+  width: 100%;
+  overflow: hidden;
+}
+
+/*header css*/
+header{
+  min-height: 15%;
+  padding: 35px 0 0 0;
+  margin: 0 10px 0 5px;
+  vertical-align: middle;
+}
+
+header li{
+  float: left;
+  display: inline;
+  align-items: center;
+  line-height: 14.4pt;
+}
+
+header a{
+  font-family: Lato-Regular;
+  font-size: 10pt;
+  color: #000000;
+  letter-spacing: 1px;
+  text-decoration: none;
+  line-height: 14.4pt;
+  -webkit-font-smoothing: antialiased;
+}
+
+header a:active{
+  autofocus:none;
+}
+
+
+header a:focus {
+  outline: none;
+}
+
+header #brand-logo{
+  float: left;
+  margin-left: 25px;
+}
+
+header nav{
+    float: right;
+    top: 0;
+    margin-right: 10px;
+    font-family: 'Serif';   
+    font-size: 8pt;
+
+}
+
+
+
+/*===================================
+               POPUP
+=====================================*/
+.popup {
+    width: 360px;
+    height: 332px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    background: #000000;
+    text-align: center;
+    filter: opacity(90%);
+    z-index: 10;
+
+}
+.website-popup {
+    width: 660px;
+    height: 482px;
+    position: fixed;
+    top: 57%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    background-image:  url('../../img/Y-background-L.jpg');
+    text-align: center;
+    filter: opacity(90%);
+    z-index: 10;
+
+}
+
+.crawl-popup {
+    width: 960px;
+    height: 540px;
+    position: fixed;
+    left: 50%;
+    overflow-y:scroll;
+    /* bring your own prefixes */
+    transform: translate(-50%);
+    background-image:  url('../../img/Y-background-L.jpg');
+    text-align: center;
+    filter: opacity(90%);
+    z-index: 10;
+
+}
+
+.website-popup h1{
+  font-family: Lato-Light;
+}
+
+.website-popup li{
+  list-style-type: none;
+}
+
+/*popup-inner*/
+.popup-inner {
+    background: #000000;
+    width: 330px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%);
+    border-radius:2px;
+}
+
+/*input css*/
+input::-webkit-input-placeholder {
+color: #808080 !important;
+font-size: 9pt;
+vertical-align: middle;
+line-height: 14.4pt;
+font-family: Lato-light;
+font-weight: 200;
+letter-spacing: 0.1pt;
+text-transform: uppercase;
+font-weight: bold;
+-webkit-font-smoothing: antialiased;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+color: #808080 !important;
+font-size: 9pt;
+vertical-align: middle;
+line-height: 14.4pt;
+font-family: Lato-light;
+font-weight: 200;
+letter-spacing: 0.1pt;
+text-transform: uppercase;
+font-weight: bold;
+-webkit-font-smoothing: antialiased;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #808080 !important;
+font-size: 9pt;
+vertical-align: middle;
+line-height: 14.4pt;
+font-family: Lato-light;
+font-weight: 200;
+letter-spacing: 0.1pt;
+text-transform: uppercase;
+font-weight: bold;
+-webkit-font-smoothing: antialiased;
+}
+
+input:-ms-input-placeholder {
+color: #808080 !important;
+font-size: 9pt;
+vertical-align: middle;
+line-height: 14.4pt;
+font-family: Lato-light;
+font-weight: 200;
+letter-spacing: 0.1pt;
+text-transform: uppercase;
+font-weight: bold;
+-webkit-font-smoothing: antialiased;
+}
+
+.site-config-form input::-webkit-input-placeholder,
+.site-config-form input:-moz-placeholder,
+.site-config-form input::-moz-placeholder,
+.site-config-form input:-ms-input-placeholder{
+  color: black !important;
+  font-size: 11pt;
+  vertical-align: middle;
+  line-height: 14.4pt;
+  font-family: Lato-light;
+  font-weight: 200;
+  letter-spacing: 0.1pt;
+  text-transform: uppercase;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+input::-webkit-input-placeholder{
+  color: black;
+}
+
+/*===========================================
+              SignUp Popup
+=============================================*/
+
+.signup_form{
+    text-align: center;
+}
+
+.signup_form .signup-mail {
+        background-image: url(../../img/Y-Icon-email-no-circle-L.png);
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        background-color: #000000;
+        color: #808080;
+        font-family: Lato-Light;
+        background-position: 10px;
+        width: 262px;
+        margin-top: 5px;
+        font-size: 11pt;
+        line-height: 14.4pt;
+        padding: 10px;
+        border: 1pt solid #008AE3;
+        padding-left: 35px;
+}
+
+#id_website,#id_spider_type,
+#id_spider_class,#id_url_patterns,
+#id_url_patterns_excl,#id_parse_patterns,
+#id_seed_urls,#id_site_settings,
+#id_class_settings,#id_priority,
+#id_frequency{
+  background-color: lightblue;
+  color: black;
+  font-family: Lato-Regular;
+  background-position: 10px;
+  width: 362px;
+  margin-top: 5px;
+  font-size: 12pt;
+  line-height: 14.4pt;
+  padding: 5px;
+  border: 1pt solid #008AE3;
+}
+
+#id_seed_urls,#id_site_settings,
+#id_class_settings{
+  height: 30px;
+  vertical-align: middle;
+}
+
+#id_enabled{
+  vertical-align: middle;
+}
+
+.website-url,.visible-url,.name{
+  background-color: lightblue;
+  color: black;
+  font-family: Lato-Regular;
+  background-position: 10px;
+  width: 362px;
+  margin-top: 5px;
+  font-size: 12pt;
+  line-height: 14.4pt;
+  padding: 5px;
+  border: 1pt solid #008AE3;
+}
+#id_name label{
+  margin-left: 20px;
+}
+
+.site-config-form{
+  text-align: left;
+  margin-left: 100px;
+}
+.crawl-config-form{
+  text-align: left;
+  margin-left: 230px;
+  height: 1284px;
+}
+
+
+
+.intro{
+  color: #808080 !important;
+  font-size: 15pt;
+  vertical-align: middle;
+  line-height: 17.4pt;
+  font-family: Lato-Light;
+  letter-spacing: 0.1pt;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.desc{
+  color: #808080 !important;
+  font-size: 10px;
+  vertical-align: middle;
+  line-height: 11.4pt;
+  font-family: Lato-Regular;
+  font-weight: 200;
+  letter-spacing: 0.1pt;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+.definition {
+    font-weight: bold;
+    font-size: 12pt;
+    font-family: Helvetica;
+    line-height: 20pt;
+    color: #112211;
+    margin-left:10px;
+}
+
+.siteinfo {
+    margin-left: 40px;
+    color: #333333;
+    font-weight: bold;
+    font-size: 11pt;
+    font-family: Arial;
+}
+
+.siteinfo ol {
+    margin-left: 30px;
+    text-transform: none;   
+    font-weight: normal;
+    line-height: 20pt;
+    color: #111111; 
+}
+
+.siteinfo ul{
+    margin-left: 30px;
+    text-transform: none;   
+    font-weight: normal;
+    line-height: 20pt;
+}
+
+
+.signup_form input[type="email"]:invalid{
+   border: 1px solid #Eb7f21;
+   box-shadow: none;
+}
+
+.signup_form .signup-pwd:invalid{
+   border: 1px solid #Eb7f21;
+   box-shadow: none;
+}
+
+.signup_form .signup-pwd{
+      background-image: url(../../img/Y-Icon-password-L-Blue.png);
+      background-size: 18px 18px;
+      background-color: #000000;
+      text-align: vertical center;
+      background-repeat: no-repeat;
+      background-position: 12px;
+      color: #808080;
+      font-family: Lato-Light;
+      font-size: 11pt;
+      -webkit-text-size-adjust: 9.5pt;
+      -ms-text-size-adjust: 9.5pt;
+      margin-top: 12px;
+      margin-left: 34px;
+      display: block;
+      line-height: 14.4pt;
+      width: 262px;
+      padding: 10px;
+      padding-left: 35px !important;
+      padding-right: 45px !important;
+      border: 1pt solid #008AE3;
+      padding-bottom: 10px;
+}
+
+.crawl-config-form input[type="checkbox"] + label {
+    color: black;
+    float: left;
+    vertical-align: middle;
+    font-size: 12pt;
+    font-family: Lato-Regular;
+}
+
+.crawl-config-form input[type="checkbox"] + label span {
+    display:inline-block;
+    width:18px;
+    height:18px;
+    margin-left: 17px;
+    background-color: lightblue;
+    border: 1pt solid #008AE3;
+    cursor:pointer;
+}
+
+.crawl-config-form input[type="checkbox"]:checked + label span {
+    background: url(../../img/image.jpg) top no-repeat;
+    background-position: center;
+    background-clip: content-box;
+}
+
+
+
+.signup_form .signup-go {
+  background-color: #008AE3;
+  color: ivory;
+  font-family: Lato-Regular;
+  font-size: 17pt;
+  text-align: center;
+  margin-top: 25px;
+  padding: 0;
+  line-height: 26.8pt;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 260px;
+  -webkit-font-smoothing: antialiased;
+  margin-bottom: 8px;
+  margin-left: 0;
+}
+
+.siteselect-go {
+    float:right;
+    margin-right: 50px;
+    font-family: Lato-Regular;
+    background-color: midnightblue;
+    color: ivory;   
+    font-size: 12pt;    
+    border-radius: 3px;
+    line-height: 25pt;  
+    cursor: pointer;
+    width: 180px;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 8px;
+}
+
+.form-go {
+    background-color: midnightblue;
+    color: ivory;
+    font-family: Lato-Regular;
+    font-size: 12pt;
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 100px;
+    padding: 0;
+    line-height: 26.8pt;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 180px;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 8px;
+}
+
+.crawl-config-form .form-go{
+  margin-left: 50px;
+}
+.signup_form button:hover {
+    opacity: 0.8;
+}
+
+
+.signup .errorlist{
+  color: #Eb7f21;
+  float: left;
+  text-align: left;
+  list-style-type: none;
+  font-size: 9pt;
+  padding-left: 12px;
+  margin-top: 2px;
+  margin-left: 24px;
+  margin-right: 16px;
+  display: inline-block;
+}
+
+/* TABLE DESIGNS */
+
+#hor-minimalist-a
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    background: #fff;
+    margin: 45px;
+    width: 480px;
+    border-collapse: collapse;
+    text-align: left;
+}
+#hor-minimalist-a th
+{
+    font-size: 14px;
+    font-weight: normal;
+    color: #039;
+    padding: 10px 8px;
+    border-bottom: 2px solid #6678b1;
+}
+#hor-minimalist-a td
+{
+    color: #669;
+    padding: 9px 8px 0px 8px;
+}
+#hor-minimalist-a tbody tr:hover td
+{
+    color: #009;
+}
+
+
+#hor-minimalist-b
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    background: #fff;
+    margin: 45px;
+    width: 480px;
+    border-collapse: collapse;
+    text-align: left;
+}
+#hor-minimalist-b th
+{
+    font-size: 14px;
+    font-weight: normal;
+    color: #039;
+    padding: 10px 8px;
+    border-bottom: 2px solid #6678b1;
+}
+#hor-minimalist-b td
+{
+    border-bottom: 1px solid #ccc;
+    color: #669;
+    padding: 6px 8px;
+}
+#hor-minimalist-b tbody tr:hover td
+{
+    color: #009;
+}
+
+
+box-table-a
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    margin: 45px;
+    width: 480px;
+    text-align: left;
+    border-collapse: collapse;
+}
+#box-table-a th
+{
+    font-size: 13px;
+    font-weight: normal;
+    padding: 8px;
+    background: #b9c9fe;
+    border-top: 4px solid #aabcfe;
+    border-bottom: 1px solid #fff;
+    color: #039;
+}
+#box-table-a td
+{
+    padding: 8px;
+    background: #e8edff; 
+    border-bottom: 1px solid #fff;
+    color: #669;
+    border-top: 1px solid transparent;
+}
+#box-table-a tr:hover td
+{
+    background: #d0dafd;
+    color: #339;
+}
+
+
+#box-table-b
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    margin: 45px;
+    width: 480px;
+    text-align: center;
+    border-collapse: collapse;
+    border-top: 7px solid #9baff1;
+    border-bottom: 7px solid #9baff1;
+}
+#box-table-b th
+{
+    font-size: 13px;
+    font-weight: normal;
+    padding: 8px;
+    background: #e8edff;
+    border-right: 1px solid #9baff1;
+    border-left: 1px solid #9baff1;
+    color: #039;
+}
+#box-table-b td
+{
+    padding: 8px;
+    background: #e8edff; 
+    border-right: 1px solid #aabcfe;
+    border-left: 1px solid #aabcfe;
+    color: #669;
+}
+
+#box-table-a td.unknown {
+    background: #990000;
+}
+
+#box-table-a td.zombie {
+    background: #dd1122;
+}
+
+#box-table-a td.error {
+    color:#ff1122;
+    font-family: Monospace;
+    font-size: 10pt;
+}
+
+
+/*SITE CONFIG PAGE*/
+
+
+
+
+
+
+/*CRAWL CONFIG PAGE*/

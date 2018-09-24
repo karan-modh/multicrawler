@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %}Web Crawl Config - Upload File{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="crawlconfigform">
+  <form method="POST" class="site-config-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ upload_form.as_p }}
+    <button type="submit" class="form-go">Upload</button>
+  </form>
+</div>
+
+{% endblock %}

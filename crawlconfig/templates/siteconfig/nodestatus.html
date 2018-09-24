@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load jsonify %}
+{% load ip_to_host %}
+{% block head_title %}Web Crawl Config - Node Status{% endblock %}
+{% block custom_meta_content %} <meta http-equiv="refresh" content="60" />{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+
+<p>Status of Crawl Nodes</p>
+<p/>
+<p/>
+<p/>
+<table id="box-table-a">
+  <thead>
+  <th>#</th><th>Node IP</th><th># Running</th><th># Finished</th><th># URLs (millions)</th><th>Last Updated</th><th>Free Memory(GB)</th><th>Active?</th>
+  </thead>
+  <tbody>
+{% for stats in node_status %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ stats.node_ip | ip_to_host }}</td>
+    <td>{{ stats.running }}</td>
+    <td>{{ stats.finished }}</td>
+    <td>{{ stats.nurls }}</td>  
+    <td style="width:180px;">{{ stats.recent }}</td>
+    <td>{{ stats.memory }}</td>
+    {% if stats.active %}
+    <td>Yes</td>
+    {% else %}
+    <td>No</td>
+    {% endif %} 
+  </tr>
+{% endfor %}
+<tr><td>##</td><td>TOTAL</td><td>{{ total.running }}</td><td>{{ total.finished }}</td><td>{{ total.nurls }}</td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p style="font-size: 1pt;">Good day.</p>
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load jsonify %}
+{% load ip_to_host %}
+{% block head_title %}Web Crawl Config - Crawl Dashboard{% endblock %}
+{% block custom_meta_content %} <meta http-equiv="refresh" content="60" />{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+
+<p>{{ title }}</p>
+<p/>
+<p/>
+<p/>
+{% if data_present %}
+<table id="box-table-a">
+  {% if end_time %}
+  <thead>
+  <th>#</th><th>URL</th><th>Industry</th><th>Start Time</th><th>End Time/Status</th><th>Duration</th><th>Reported Time</th><th>Downloads</th><<th>Node</th>
+  {% else %}
+  <th>#</th><th>URL</th><th>Industry</th><th>Start Time</th><th>Running Time</th><th>Reported Time</th><th>Downloads</th><th># URLs/hour</th><th>Node</th>
+  </thead>
+  {% endif %}
+  <tbody>
+{% for stats in statistics %}
+<tr>
+  <!-- crawl id: {{ stats.crawl_id }} -->
+    <!-- error: {{ stats.error | jsonify }} -->
+  
+    <td>{{ forloop.counter }}</td>
+    <td title="{{ stats.crawl_id }}">{{ stats.visible_url }}</td>
+    {% if stats.industry %}
+    <td>{{ stats.industry }}</td>
+    {% else %}
+    <td>N.A</td>
+    {% endif %}
+    <td style="width:180px;">{{ stats.start_time }}</td>
+    {% if end_time %}
+    {% if stats.end_time %}
+    <td style="width:180px;">{{ stats.end_time }}</td>
+    {% else %}
+    <td class="{{ stats.status }}">{{ stats.status }}</td>
+    {% endif %} 
+    {% endif %}
+    <td>{{ stats.duration }}</td>
+    <td>{{ stats.reported_time }} ago</td>  
+    <td>{{ stats.downloads }}</td>
+    {% if running %}
+     <td>{{ stats.rate }}</td>
+    {% endif %}
+    {% if stats.crawl_node_ip %}
+    <td>{{ stats.crawl_node_ip | ip_to_host }}</td>
+    {% else %}
+    <td>N.A</td>
+    {% endif %} 
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p style="font-color:red">
+  {% if running %}
+  No running crawls at present
+  {% else %}
+  No data to show for crawls in last 24 hours
+  {% endif %}
+</p>
+{% endif %}
+
+{% if running %}
+<p><a href="/crawlslastday">Check stats for last 24 hours</a></p>
+{% else %}
+<p><a href="/crawlsrunning">Check running crawls status</a></p>
+{% endif %}
+
+{% endblock %}

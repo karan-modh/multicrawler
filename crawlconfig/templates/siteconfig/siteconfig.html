@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %}Web Crawl Config{% endblock %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="crawlconfigform">
+  <div id="login" class="website-popup">
+
+    <h1>Add a new site to crawl</h1>
+    <p>Please enter website details to be crawled</p>
+      </li>
+    </ul>
+    <form method="POST" class="site-config-form">
+      {% csrf_token %}
+        <label for="id_website_url">Website URL:</label> <input class="website-url" id="id_website_url" maxlength="1024" name="website_url" type="text" required /></p>
+        <p>Name of the website will be auto-fetched, if left balnk</p>
+      <label for="id_name">Name:</label> <input class="name" id="id_name" name="name" type="text" /></p>
+          <p>Visible or friendly URL will be same as website URL, if left blank</p>
+        <label for="id_visible_url">Visible URL:</label> <input class="visible-url" id="id_visible_url" name="visible_url" type="text" /></p>
+        <button type="submit" class="form-go">Save</button>
+
+      </form>
+    <p>If you want to configure crawl configuration for any existing website, <a href="/crawlconfig/">Click Here</a></p>
+  </div>
+  </div>
+{% endblock %}

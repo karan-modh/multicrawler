@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block head_title %}Log In{% endblock %}
+{% block content %}
+
+<div id="login" class="popup">
+  <p class="intro">Web Crawl Config</p>
+  <div class="popup-inner" id="signup-inner">
+<div class="signup_form">
+  <form novalidate="novalidate" class="signup" id="signup-form" method="POST">
+      {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.email.errors }}
+        {{ form.password1.errors }}
+        <input id="id_username" autocomplete="off" maxlength="254" name="username" type="text" required class="signup-mail" placeholder="USERNAME">
+        <input id="id_password" autocomplete="new-password" class="signup-pwd" name="password" required placeholder="PASSWORD" type="password" />
+        {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button class="signup-go" type="submit">Login</button>
+  </form>
+</div>
+</div>
+</div>
+{% endblock %}

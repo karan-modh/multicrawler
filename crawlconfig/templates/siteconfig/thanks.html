@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %}Web Crawl Config{% endblock %}
+{% block content %}
+<header>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="/accounts/logout/">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div id="login" class="website-popup">
+
+<div class="crawlconfigform">
+<h1>Thanks for submitting</h1>
+
+<p><a href="/">Click Here</a> to add more websites and its crawl configuration.</p>
+</div>
+{% endblock %}

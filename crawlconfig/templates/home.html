@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_title %}Web Crawl Config - Home{% endblock %}
+{% block content %}
+<header>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="/accounts/logout/">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="main">
+  <p>
+    &nbsp;&nbsp;You can do one of the following things.
+  </p>
+  <p class="siteinfo">Configuration</p>
+  <ol>
+    <li><a href="/addsite">Add a new website</li>
+    <br/>
+    <li><a href="/viewsite">Search and view details of a website</a></li>
+    <br/>   
+    <li><a href="/editsite">Edit an existing website</a></li>
+    <br/>   
+    <li><a href="/addsiteconfig">Add/modify a website configuration</a></li>
+    <br/>
+    <li><a href="/uploadsites">Upload files containing website configuration</a></li>
+    <br/>   
+  </ol>
+  <p class="siteinfo">Crawls</p>
+  <ol>
+    <li><a href="/schedulecrawl">Queue a website for crawl</li>
+    <br/>
+    <li><a href="/schedulecrawlbulk">Queue multiple websites for crawl</li>
+    <br/>
+    <li><a href="/crawlslastweek">View status of crawls started within last 7 days</a></li>
+    <br/>           
+    <li><a href="/crawlslastday">View status of crawls started within last 24 hours</a></li>
+    <br/>       
+    <li><a href="/crawlsrunning">View status of currently running crawls</a></li>
+    <br/>       
+    <li><a href="/nodestatus">View status of Crawl Nodes</a></li>    
+  </ol>
+  <br/>
+  <p class="siteinfo">Crawls Debugging</p>
+  <ol>
+    <li><a href="/zerocrawls">Crawls with zero downloads within last 30 days</a></li>
+    <br/>
+  </ol>
+  
+</div>
+{% endblock %}
